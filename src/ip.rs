@@ -1,3 +1,5 @@
+use pad::{PadStr, Alignment};
+
 pub struct Ip {
 	pub first: u8,
     pub second: u8,
@@ -26,7 +28,11 @@ pub fn build_ip(ip: String) -> Ip {
 		};
 		octets[i] = octet;
 
-		let soctet = format!("{:b}", octet);
+		let soctet = format!("{:b}", octet).pad(8, '0', Alignment::Right, true);
+
+
+
+
 		for (j, c) in soctet.chars().enumerate() {
 			bin[j + i*8] = c == '1';
 		}

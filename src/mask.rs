@@ -1,3 +1,5 @@
+use pad::{PadStr, Alignment};
+
 pub struct Mask {
 	pub first: u8,
     pub second: u8,
@@ -27,7 +29,7 @@ pub fn build_mask(ip: String) -> Mask {
 		};
 		octets[i] = octet;
 
-		let soctet = format!("{:b}", octet);
+		let soctet = format!("{:b}", octet).pad(8, '0', Alignment::Right, true);
 		for (j, c) in soctet.chars().enumerate() {
 			bin[j + i*8] = c == '1';
 		}
