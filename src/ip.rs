@@ -9,8 +9,6 @@ pub struct Ip {
     pub bin: [bool; 32]
 }
 
-
-
 pub fn build_ip(ip: String) -> Ip {
     let split = ip.replace(".", ":");
     let split = split.split(":");
@@ -29,9 +27,6 @@ pub fn build_ip(ip: String) -> Ip {
 		octets[i] = octet;
 
 		let soctet = format!("{:b}", octet).pad(8, '0', Alignment::Right, true);
-
-
-
 
 		for (j, c) in soctet.chars().enumerate() {
 			bin[j + i*8] = c == '1';

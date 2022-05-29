@@ -1,12 +1,13 @@
-use crate::ip;
 use crate::mask;
+use crate::ip;
 
-pub fn get_network_ip(mask: &mask::Mask, ip: &ip::Ip) -> ip::Ip {
+pub fn get_broadcast_ip(net_ip: &ip::Ip, net_mask: &mask::Mask) -> ip::Ip {
 	let mut bin_array: [bool; 32] = [false; 32];
 
-	for (i, c) in mask.bin.iter().enumerate() {
-		bin_array[i] = *c && ip.bin[i];
+	for (i, c) in net_mask.bin.iter().enumerate() {
+		bin_array[i] = !*c || net_ip.bin[i];
 	}
+
 	// convert from bool array to ip
 	let mut octets: [u8; 4] = [0; 4];
 	
@@ -35,6 +36,7 @@ pub fn get_network_ip(mask: &mask::Mask, ip: &ip::Ip) -> ip::Ip {
 		second: octets[1],
 		third: octets[2],
 		forth: octets[3],
+
 
 		bin: bin_array,
 	}
