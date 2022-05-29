@@ -3,3 +3,4 @@
 school project
 
 `cargo run` to run
+## 🔥🔥🔥🔥🔥blazingly fast🚀🚀🚀🚀
